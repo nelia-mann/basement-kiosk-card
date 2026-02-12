@@ -625,8 +625,10 @@ var $24833e213e3419f0$export$2e2bcd8739ae039 = (0, $def2de46b9306e8a$export$dbf3
         flex-flow: column nowrap;
         justify-content: space-between;
         align-items: center;
-        height: 500px;
-        width: 800px;
+        height: 600px;
+        width: 900px;
+        border: solid;
+        border-radius: 0px;
     }
 
 `;

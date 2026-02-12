@@ -9,8 +9,10 @@ export default css`
         flex-flow: column nowrap;
         justify-content: space-between;
         align-items: center;
-        height: 500px;
-        width: 800px;
+        height: 600px;
+        width: 900px;
+        border: solid;
+        border-radius: 0px;
     }
 
 `;
