@@ -652,7 +652,7 @@ class $b161f025c07cf354$export$7fe46a8978a1b23d extends (0, $ab210b2da7b39b9d$ex
     render() {
         return (0, $f58f44579a4747ac$export$c0bb0b647f701bb5)`
             <ha-card>
-                Placeholder3
+                Placeholder4
             </ha-card>
         `;
     }
