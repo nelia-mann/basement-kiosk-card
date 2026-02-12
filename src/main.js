@@ -27,7 +27,7 @@ export class MainCard extends LitElement {
     render() {
         return html`
             <ha-card>
-                Placeholder
+                Placeholder2
             </ha-card>
         `;
     }
