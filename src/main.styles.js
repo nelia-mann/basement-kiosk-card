@@ -10,7 +10,7 @@ export default css`
         justify-content: space-between;
         align-items: center;
         height: 570px;
-        width: 920px;
+        width: 910px;
         outline: solid;
         border-radius: 0px;
     }
