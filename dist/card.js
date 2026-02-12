@@ -625,9 +625,9 @@ var $24833e213e3419f0$export$2e2bcd8739ae039 = (0, $def2de46b9306e8a$export$dbf3
         flex-flow: column nowrap;
         justify-content: space-between;
         align-items: center;
-        height: 600px;
-        width: 900px;
-        border: solid;
+        height: 570px;
+        width: 920px;
+        outline: solid;
         border-radius: 0px;
     }
 
@@ -652,7 +652,7 @@ class $b161f025c07cf354$export$7fe46a8978a1b23d extends (0, $ab210b2da7b39b9d$ex
     render() {
         return (0, $f58f44579a4747ac$export$c0bb0b647f701bb5)`
             <ha-card>
-                Placeholder2
+                Placeholder3
             </ha-card>
         `;
     }
