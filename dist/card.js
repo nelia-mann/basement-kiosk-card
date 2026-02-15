@@ -1134,6 +1134,7 @@ class $b161f025c07cf354$export$7fe46a8978a1b23d extends (0, $ab210b2da7b39b9d$ex
     ];
     _entityIds = [];
     _floorId = "basement";
+    _structure = {};
     // internal reactive states
     static get properties() {
         return {
@@ -1152,7 +1153,7 @@ class $b161f025c07cf354$export$7fe46a8978a1b23d extends (0, $ab210b2da7b39b9d$ex
     set hass(hass) {
         this._hass = hass;
         this.setStructures();
-        console.log(this._structure);
+        console.log(this._entityIds);
     }
     /******************************* structure logic ***********************/ getAreaIds() {
         const areas = this._hass.areas;

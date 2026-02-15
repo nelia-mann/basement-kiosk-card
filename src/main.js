@@ -13,6 +13,7 @@ export class MainCard extends LitElement {
     _OPTIONS = ["lighting", "climate"];
     _entityIds = [];
     _floorId = "basement";
+    _structure = {};
 
     // internal reactive states
     static get properties() {
@@ -36,7 +37,7 @@ export class MainCard extends LitElement {
     set hass(hass) {
         this._hass = hass;
         this.setStructures();
-        console.log(this._structure)
+        console.log(this._entityIds)
     }
 
     /******************************* structure logic ***********************/
