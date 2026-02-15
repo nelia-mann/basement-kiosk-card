@@ -19,6 +19,39 @@ export class LightButton extends LitElement {
         }
     }
 
+    /************* lifecycle ***********************************************/
+
+    // when first constructed
+    constructor() {
+        super();
+    }
+
+    // each time an update occurs resulting in rerendering
+    update(changedProps) {
+        super.update(changedProps);
+    }
+
+    // determines if an update should occur
+    shouldUpdate(changedProps) {
+        return (!this._initialized || this.hasRelevantChanges() || changedProps.has("_isSelected"))
+    }
+
+    // runs after the first update
+    firstUpdated() {
+        this._initialized = true;
+    }
+
+    // runs after every update
+    updated() {
+    }
+
+    // helper to determine if should update
+    hasRelevantChanges() {
+        return this._entityIds.some(entityId => this._changedEntityIds.has(entityId));
+    }
+
+    /*************************************************************************/
+
     isSolo(lightId) {
         return !(this._states[lightId].attributes.entity_id);
     }
@@ -55,6 +88,26 @@ export class LightButton extends LitElement {
         return styles;
     }
 
+    onClick() {
+        this._isSelected = true;
+        this.dispatchEvent(new CustomEvent('select'))
+    }
+
+    static styles = [styles, sharedStyles];
+
+    render() {
+        if (this._initialized) {
+            return html`
+                <div
+                    class="button outlined"
+                    @click=${() => this.onClick()}
+                    style=${styleMap(this.getStyles())}
+                >
+                    <div class="small-heading"> Lighting </div>
+                    <div class="sub-info"> sub-info </div>
+                </div>`
+        }
+    }
 }
 
 customElements.define("light-button", LightButton);
