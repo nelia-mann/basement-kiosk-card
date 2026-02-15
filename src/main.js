@@ -1,15 +1,26 @@
 import { html, LitElement } from 'lit';
+import { styleMap } from 'lit/directives/style-map.js';
+import { repeat } from 'lit-html/directives/repeat.js';
 import styles from './main.styles.js';
+import sharedStyles from './shared-styles.js';
+import { rgba } from './color-util.js';
 
 export class MainCard extends LitElement {
 
     // private properties
     _hass;
+    _OPTIONS = ["lighting", "climate"];
 
     // internal reactive states
     static get properties() {
         return {
+            _option: { state: true },
         };
+    }
+
+    constructor() {
+        super();
+        this._option = "lighting";
     }
 
     // establish config information for card
@@ -21,13 +32,62 @@ export class MainCard extends LitElement {
         this._hass = hass;
     }
 
-    static styles = styles;
+    onClick(option) {
+        this._option = option;
+    }
+
+    getButtonStyle(option) {
+        const rgb = [100, 100, 100]; // placeholder for fancy coloring choice
+        let styles = {
+            'background-color': rgba(rgb, .5)
+        }
+        if (this._option === option) {
+            styles['outline'] = `solid ${rgba(rgb, 1)}`;
+            styles['outline-offset'] = '-4px';
+        }
+        return styles;
+    }
+
+    button(option) {
+        return html`<div
+            class="button outlined"
+            @click=${() => this.onClick(option)}
+            style=${styleMap(this.getButtonStyle(option))}
+        >
+            <div class="small-heading"> ${option} </div>
+            <div class="sub-info"> sub-info </div>
+        </div>`
+    }
+
+    buttonRow() {
+        return html`
+            <div class="button-row">
+                ${repeat(this._OPTIONS, (option) => option, option => this.button(option))}
+            </div>
+        `
+    }
+
+    content() {
+        let panel = html``;
+        switch (this._option) {
+            case "lighting":
+                panel = html`<div> Lighting Placeholder </div>`;
+                break;
+            case "climate":
+                panel = html`<div> Climate Placeholder </div>`;
+                break;
+        }
+        return panel;
+    }
+
+    static styles = [styles, sharedStyles];
 
     // return html
     render() {
         return html`
             <ha-card>
-                Placeholder
+                <div class="content">${this.content()}</div>
+                ${this.buttonRow()}
             </ha-card>
         `;
     }
@@ -39,10 +99,10 @@ export class MainCard extends LitElement {
 
     getGridOptions() {
         return {
-            rows: 8,
+            rows: 9,
             columns: 24,
-            min_rows: 8,
-            max_rows: 8
+            min_rows: 9,
+            max_rows: 9
         }
     }
 

@@ -616,6 +616,170 @@ const $ab210b2da7b39b9d$export$f5c524615a7708d6 = {
 
 
 
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */ const $107bb7d062dde330$export$9ba3b3f20a85bfa = {
+    ATTRIBUTE: 1,
+    CHILD: 2,
+    PROPERTY: 3,
+    BOOLEAN_ATTRIBUTE: 4,
+    EVENT: 5,
+    ELEMENT: 6
+}, $107bb7d062dde330$export$99b43ad1ed32e735 = (t)=>(...e)=>({
+            _$litDirective$: t,
+            values: e
+        });
+class $107bb7d062dde330$export$befdefbdce210f91 {
+    constructor(t){}
+    get _$AU() {
+        return this._$AM._$AU;
+    }
+    _$AT(t, e, i) {
+        this._$Ct = t, this._$AM = e, this._$Ci = i;
+    }
+    _$AS(t, e) {
+        return this.update(t, e);
+    }
+    update(t, e) {
+        return this.render(...e);
+    }
+}
+
+
+/**
+ * @license
+ * Copyright 2018 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */ const $19f464fcda7d2482$var$n = "important", $19f464fcda7d2482$var$i = " !" + $19f464fcda7d2482$var$n, $19f464fcda7d2482$export$1e5b4ce2fa884e6a = (0, $107bb7d062dde330$export$99b43ad1ed32e735)(class extends (0, $107bb7d062dde330$export$befdefbdce210f91) {
+    constructor(t){
+        if (super(t), t.type !== (0, $107bb7d062dde330$export$9ba3b3f20a85bfa).ATTRIBUTE || "style" !== t.name || t.strings?.length > 2) throw Error("The `styleMap` directive must be used in the `style` attribute and must be the only part in the attribute.");
+    }
+    render(t) {
+        return Object.keys(t).reduce((e, r)=>{
+            const s = t[r];
+            return null == s ? e : e + `${r = r.includes("-") ? r : r.replace(/(?:^(webkit|moz|ms|o)|)(?=[A-Z])/g, "-$&").toLowerCase()}:${s};`;
+        }, "");
+    }
+    update(e, [r]) {
+        const { style: s } = e.element;
+        if (void 0 === this.ft) return this.ft = new Set(Object.keys(r)), this.render(r);
+        for (const t of this.ft)null == r[t] && (this.ft.delete(t), t.includes("-") ? s.removeProperty(t) : s[t] = null);
+        for(const t in r){
+            const e = r[t];
+            if (null != e) {
+                this.ft.add(t);
+                const r = "string" == typeof e && e.endsWith($19f464fcda7d2482$var$i);
+                t.includes("-") || r ? s.setProperty(t, r ? e.slice(0, -11) : e, r ? $19f464fcda7d2482$var$n : "") : s[t] = e;
+            }
+        }
+        return 0, $f58f44579a4747ac$export$9c068ae9cc5db4e8;
+    }
+});
+
+
+
+
+
+
+
+/**
+ * @license
+ * Copyright 2020 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */ const { I: $311430566e21b48b$var$t } = (0, $f58f44579a4747ac$export$8613d1ca9052b22e), $311430566e21b48b$var$i = (o)=>o, $311430566e21b48b$export$c3825b437cbdea5c = (o)=>null === o || "object" != typeof o && "function" != typeof o, $311430566e21b48b$export$80c36ae3cab9881d = {
+    HTML: 1,
+    SVG: 2,
+    MATHML: 3
+}, $311430566e21b48b$export$6b6d145ec2a44ca9 = (o, t)=>void 0 === t ? void 0 !== o?._$litType$ : o?._$litType$ === t, $311430566e21b48b$export$6a0e8de894d2fcca = (o)=>null != o?._$litType$?.h, $311430566e21b48b$export$2f448fec17d50a3e = (o)=>void 0 !== o?._$litDirective$, $311430566e21b48b$export$f28e31de6a6eaf32 = (o)=>o?._$litDirective$, $311430566e21b48b$export$7f431ad0fff82fd9 = (o)=>void 0 === o.strings, $311430566e21b48b$var$s = ()=>document.createComment(""), $311430566e21b48b$export$291b2338ad9b0b30 = (o, n, e)=>{
+    const l = o._$AA.parentNode, d = void 0 === n ? o._$AB : n._$AA;
+    if (void 0 === e) {
+        const i = l.insertBefore($311430566e21b48b$var$s(), d), n = l.insertBefore($311430566e21b48b$var$s(), d);
+        e = new $311430566e21b48b$var$t(i, n, o, o.options);
+    } else {
+        const t = e._$AB.nextSibling, n = e._$AM, c = n !== o;
+        if (c) {
+            let t;
+            e._$AQ?.(o), e._$AM = o, void 0 !== e._$AP && (t = o._$AU) !== n._$AU && e._$AP(t);
+        }
+        if (t !== d || c) {
+            let o = e._$AA;
+            for(; o !== t;){
+                const t = $311430566e21b48b$var$i(o).nextSibling;
+                $311430566e21b48b$var$i(l).insertBefore(o, d), o = t;
+            }
+        }
+    }
+    return e;
+}, $311430566e21b48b$export$cb8bf9562088e9f4 = (o, t, i = o)=>(o._$AI(t, i), o), $311430566e21b48b$var$m = {}, $311430566e21b48b$export$ea70d9dd5965b1c8 = (o, t = $311430566e21b48b$var$m)=>o._$AH = t, $311430566e21b48b$export$59e9bce518cde500 = (o)=>o._$AH, $311430566e21b48b$export$3133b3144bbba267 = (o)=>{
+    o._$AR(), o._$AA.remove();
+}, $311430566e21b48b$export$7f600b8138c094dc = (o)=>{
+    o._$AR();
+};
+
+
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */ const $6db6ff6394e885e6$var$u = (e, s, t)=>{
+    const r = new Map;
+    for(let l = s; l <= t; l++)r.set(e[l], l);
+    return r;
+}, $6db6ff6394e885e6$export$76d90c956114f2c2 = (0, $107bb7d062dde330$export$99b43ad1ed32e735)(class extends (0, $107bb7d062dde330$export$befdefbdce210f91) {
+    constructor(e){
+        if (super(e), e.type !== (0, $107bb7d062dde330$export$9ba3b3f20a85bfa).CHILD) throw Error("repeat() can only be used in text expressions");
+    }
+    dt(e, s, t) {
+        let r;
+        void 0 === t ? t = s : void 0 !== s && (r = s);
+        const l = [], o = [];
+        let i = 0;
+        for (const s of e)l[i] = r ? r(s, i) : i, o[i] = t(s, i), i++;
+        return {
+            values: o,
+            keys: l
+        };
+    }
+    render(e, s, t) {
+        return this.dt(e, s, t).values;
+    }
+    update(s, [t, r, c]) {
+        const d = (0, $311430566e21b48b$export$59e9bce518cde500)(s), { values: p, keys: a } = this.dt(t, r, c);
+        if (!Array.isArray(d)) return this.ut = a, p;
+        const h = this.ut ??= [], v = [];
+        let m, y, x = 0, j = d.length - 1, k = 0, w = p.length - 1;
+        for(; x <= j && k <= w;)if (null === d[x]) x++;
+        else if (null === d[j]) j--;
+        else if (h[x] === a[k]) v[k] = (0, $311430566e21b48b$export$cb8bf9562088e9f4)(d[x], p[k]), x++, k++;
+        else if (h[j] === a[w]) v[w] = (0, $311430566e21b48b$export$cb8bf9562088e9f4)(d[j], p[w]), j--, w--;
+        else if (h[x] === a[w]) v[w] = (0, $311430566e21b48b$export$cb8bf9562088e9f4)(d[x], p[w]), (0, $311430566e21b48b$export$291b2338ad9b0b30)(s, v[w + 1], d[x]), x++, w--;
+        else if (h[j] === a[k]) v[k] = (0, $311430566e21b48b$export$cb8bf9562088e9f4)(d[j], p[k]), (0, $311430566e21b48b$export$291b2338ad9b0b30)(s, d[x], d[j]), j--, k++;
+        else if (void 0 === m && (m = $6db6ff6394e885e6$var$u(a, k, w), y = $6db6ff6394e885e6$var$u(h, x, j)), m.has(h[x])) {
+            if (m.has(h[j])) {
+                const e = y.get(a[k]), t = void 0 !== e ? d[e] : null;
+                if (null === t) {
+                    const e = (0, $311430566e21b48b$export$291b2338ad9b0b30)(s, d[x]);
+                    (0, $311430566e21b48b$export$cb8bf9562088e9f4)(e, p[k]), v[k] = e;
+                } else v[k] = (0, $311430566e21b48b$export$cb8bf9562088e9f4)(t, p[k]), (0, $311430566e21b48b$export$291b2338ad9b0b30)(s, d[x], t), d[e] = null;
+                k++;
+            } else (0, $311430566e21b48b$export$3133b3144bbba267)(d[j]), j--;
+        } else (0, $311430566e21b48b$export$3133b3144bbba267)(d[x]), x++;
+        for(; k <= w;){
+            const e = (0, $311430566e21b48b$export$291b2338ad9b0b30)(s, v[w + 1]);
+            (0, $311430566e21b48b$export$cb8bf9562088e9f4)(e, p[k]), v[k++] = e;
+        }
+        for(; x <= j;){
+            const e = d[x++];
+            null !== e && (0, $311430566e21b48b$export$3133b3144bbba267)(e);
+        }
+        return this.ut = a, (0, $311430566e21b48b$export$ea70d9dd5965b1c8)(s, v), $f58f44579a4747ac$export$9c068ae9cc5db4e8;
+    }
+});
+
+
+
 var $24833e213e3419f0$export$2e2bcd8739ae039 = (0, $def2de46b9306e8a$export$dbf350e5966cf602)`
     ha-card {
         padding: 25px;
@@ -631,15 +795,253 @@ var $24833e213e3419f0$export$2e2bcd8739ae039 = (0, $def2de46b9306e8a$export$dbf3
         border-radius: 0px;
     }
 
+    .content {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        height: 520px;
+        width: 100%;
+    }
+
+    .button-row {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        height: 50px;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .button {
+        height: 100%;
+        width: 160px;
+        padding: 0px;
+        border: none;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+
 `;
+
+
+
+var $65e9333b9a0c9dfd$export$2e2bcd8739ae039 = (0, $def2de46b9306e8a$export$dbf350e5966cf602)`
+
+    * {
+        font-family: "Roboto", "Noto", sans-serif;
+        ---mdc-icon-size: 20px;
+    }
+
+    .small-heading {
+        font-weight: 700;
+        font-size: 105%;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .large-heading {
+        font-weight: 600;
+        font-size: 200%;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .sub-info {
+        padding: 0px;
+        margin: 0px;
+        font-weight: 400;
+        font-size: 85%;
+    }
+
+    .outlined {
+        outline-offset: 0px;
+        border-radius: 8px;
+    }
+
+    dialog::backdrop {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .outlined {
+        outline: .5px solid rgba(0, 0, 0, .1);
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .inner-slider {
+        border-top: solid 2px rgba(0, 0, 0, .1);
+        border-bottom: solid 2px rgba(0, 0, 0, .1);
+    }
+
+    .shown-level {
+        background: rgba(0, 0, 0, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        * {
+            color: #ffffff;
+        }
+
+        .outlined {
+            outline: .5px solid rgba(255, 255, 255, .1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 .5px 2px rgba(255, 255, 255, 0.1) inset;
+        }
+
+        .inner-slider {
+            border-top: solid 2px rgba(255, 255, 255, .1);
+            border-bottom: solid 2px rgba(255, 255, 255, .1);
+        }
+
+        .shown-level {
+            background: rgba(255, 255, 255, 1);
+        }
+
+        dialog {
+            background: #191919;
+        }
+
+        .slider {
+            background: #191919;
+        }
+    }
+
+`;
+
+
+const $d66841a16b153167$export$a004fc522c1a4845 = [
+    255,
+    193,
+    7
+]; // color in rgb (yellow)
+const $d66841a16b153167$export$e59310e5bf013385 = [
+    127,
+    97,
+    3
+]; // should be black-ish yellow
+const $d66841a16b153167$export$173de64b5ad0d5b4 = [
+    158,
+    158,
+    158
+]; // color in rgb (gray)
+const $d66841a16b153167$export$f353bac13bc8bab2 = [
+    68,
+    115,
+    158
+]; // color in rgb (steel blue)
+const $d66841a16b153167$export$af126f6aeedfb296 = [
+    41,
+    0,
+    255
+]; // blue color
+function $d66841a16b153167$var$getTempRed(temp) {
+    let red;
+    if (temp <= 6600) red = 255;
+    else {
+        red = temp / 100 - 60;
+        red = Math.round(329.698727446 * red ** -0.1332047592);
+    }
+    red < 0 && (red = 0);
+    red > 255 && (red = 255);
+    return red;
+}
+function $d66841a16b153167$var$getTempGreen(temp) {
+    let green;
+    if (temp <= 6600) {
+        green = temp / 100;
+        green = Math.round(99.4708025861 * Math.log(green) - 161.1195681661);
+    } else {
+        green = temp / 100 - 60;
+        green = Math.round(288.1221695283 * green ** -0.0755148492);
+    }
+    green < 0 && (green = 0);
+    green > 255 && (green = 255);
+    return green;
+}
+function $d66841a16b153167$var$getTempBlue(temp) {
+    let blue;
+    if (temp > 6600) blue = 255;
+    else if (temp <= 1900) blue = 0;
+    else {
+        blue = temp / 100 - 10;
+        blue = Math.round(138.5177312231 * Math.log(blue) - 305.0447927307);
+    }
+    blue < 0 && (blue = 0);
+    blue > 255 && (blue = 255);
+    return blue;
+}
+function $d66841a16b153167$export$c18f11e95ff36b0c(temp) {
+    return [
+        $d66841a16b153167$var$getTempRed(temp),
+        $d66841a16b153167$var$getTempGreen(temp),
+        $d66841a16b153167$var$getTempBlue(temp)
+    ];
+}
+function $d66841a16b153167$export$5b5356aa7e20fd72(minTemp, maxTemp, steps) {
+    let output = `linear-gradient(to top`;
+    for(let step = 0; step <= steps; step++){
+        const temp = (minTemp * (steps - step) + maxTemp * step) / steps;
+        const rgb = $d66841a16b153167$export$c18f11e95ff36b0c(temp);
+        const result = $d66841a16b153167$export$4e46ac54fc82cf3b(rgb, 1);
+        const percent = Math.round(step * 100 / steps);
+        output = output + `, ` + result + ` ${percent}%`;
+    }
+    output = output + `)`;
+    return output;
+}
+function $d66841a16b153167$export$475133aea461e763(steps) {
+    let output = 'radial-gradient(circle at center, white 0%, transparent 100%), ';
+    output = output + 'conic-gradient( from 0deg';
+    for(let step = 0; step <= steps; step++){
+        const angle = Math.round(step * 360 / steps);
+        output = output + `, hsl(${angle}, 100%, 50%)`;
+    }
+    output = output + `)`;
+    return output;
+}
+function $d66841a16b153167$var$setScale(a, b, t) {
+    let result = a;
+    if (t > 1) result = b;
+    else if (t < 0) result = a;
+    else result = a + (b - a) * t;
+    return result;
+}
+function $d66841a16b153167$export$4e46ac54fc82cf3b(rgbArray, opacity) {
+    return `rgba(${rgbArray[0]}, ${rgbArray[1]}, ${rgbArray[2]}, ${opacity})`;
+}
+function $d66841a16b153167$export$dd0fba3206c57e56(rgbA, rgbB, t) {
+    const red = $d66841a16b153167$var$setScale(rgbA[0], rgbB[0], t);
+    const green = $d66841a16b153167$var$setScale(rgbA[1], rgbB[1], t);
+    const blue = $d66841a16b153167$var$setScale(rgbA[2], rgbB[2], t);
+    return [
+        red,
+        green,
+        blue
+    ];
+}
 
 
 class $b161f025c07cf354$export$7fe46a8978a1b23d extends (0, $ab210b2da7b39b9d$export$3f2f9f5909897157) {
     // private properties
     _hass;
+    _OPTIONS = [
+        "lighting",
+        "climate"
+    ];
     // internal reactive states
     static get properties() {
-        return {};
+        return {
+            _option: {
+                state: true
+            }
+        };
+    }
+    constructor(){
+        super();
+        this._option = "lighting";
     }
     // establish config information for card
     setConfig() {}
@@ -647,12 +1049,63 @@ class $b161f025c07cf354$export$7fe46a8978a1b23d extends (0, $ab210b2da7b39b9d$ex
     set hass(hass) {
         this._hass = hass;
     }
-    static styles = (0, $24833e213e3419f0$export$2e2bcd8739ae039);
+    onClick(option) {
+        this._option = option;
+    }
+    getButtonStyle(option) {
+        const rgb = [
+            100,
+            100,
+            100
+        ]; // placeholder for fancy coloring choice
+        let styles = {
+            'background-color': (0, $d66841a16b153167$export$4e46ac54fc82cf3b)(rgb, .5)
+        };
+        if (this._option === option) {
+            styles['outline'] = `solid ${(0, $d66841a16b153167$export$4e46ac54fc82cf3b)(rgb, 1)}`;
+            styles['outline-offset'] = '-4px';
+        }
+        return styles;
+    }
+    button(option) {
+        return (0, $f58f44579a4747ac$export$c0bb0b647f701bb5)`<div
+            class="button outlined"
+            @click=${()=>this.onClick(option)}
+            style=${(0, $19f464fcda7d2482$export$1e5b4ce2fa884e6a)(this.getButtonStyle(option))}
+        >
+            <div class="small-heading"> ${option} </div>
+            <div class="sub-info"> sub-info </div>
+        </div>`;
+    }
+    buttonRow() {
+        return (0, $f58f44579a4747ac$export$c0bb0b647f701bb5)`
+            <div class="button-row">
+                ${(0, $6db6ff6394e885e6$export$76d90c956114f2c2)(this._OPTIONS, (option)=>option, (option)=>this.button(option))}
+            </div>
+        `;
+    }
+    content() {
+        let panel = (0, $f58f44579a4747ac$export$c0bb0b647f701bb5)``;
+        switch(this._option){
+            case "lighting":
+                panel = (0, $f58f44579a4747ac$export$c0bb0b647f701bb5)`<div> Lighting Placeholder </div>`;
+                break;
+            case "climate":
+                panel = (0, $f58f44579a4747ac$export$c0bb0b647f701bb5)`<div> Climate Placeholder </div>`;
+                break;
+        }
+        return panel;
+    }
+    static styles = [
+        (0, $24833e213e3419f0$export$2e2bcd8739ae039),
+        (0, $65e9333b9a0c9dfd$export$2e2bcd8739ae039)
+    ];
     // return html
     render() {
         return (0, $f58f44579a4747ac$export$c0bb0b647f701bb5)`
             <ha-card>
-                Placeholder
+                <div class="content">${this.content()}</div>
+                ${this.buttonRow()}
             </ha-card>
         `;
     }
@@ -662,10 +1115,10 @@ class $b161f025c07cf354$export$7fe46a8978a1b23d extends (0, $ab210b2da7b39b9d$ex
     }
     getGridOptions() {
         return {
-            rows: 8,
+            rows: 9,
             columns: 24,
-            min_rows: 8,
-            max_rows: 8
+            min_rows: 9,
+            max_rows: 9
         };
     }
 }
