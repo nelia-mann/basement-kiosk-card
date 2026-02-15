@@ -1,7 +1,5 @@
 import { html, LitElement } from 'lit';
-import './light-icon.js';
-import './popout-window.js';
-import styles from './light.styles.js';
+import styles from './main.styles.js';
 import sharedStyles from './shared-styles.js';
 import { interpolateRGB, OFF, ONLIGHT, rgba } from './color-util.js';
 

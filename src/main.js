@@ -11,6 +11,8 @@ export class MainCard extends LitElement {
     // private properties
     _hass;
     _OPTIONS = ["lighting", "climate"];
+    _entityIds = [];
+    _floorId = "basement";
 
     // internal reactive states
     static get properties() {
@@ -18,6 +20,8 @@ export class MainCard extends LitElement {
             _option: { state: true },
         };
     }
+
+    /******************************* lifecycle *****************************/
 
     constructor() {
         super();
@@ -31,7 +35,36 @@ export class MainCard extends LitElement {
     // gets the hass, and then creates the light bundles to be passed around.
     set hass(hass) {
         this._hass = hass;
+        this.setStructures();
+        console.log(this._structure)
     }
+
+    /******************************* structure logic ***********************/
+
+    getAreaIds() {
+        const areas = this._hass.areas;
+        const areaIds = Object.keys(areas).filter((areaId) => {
+            return areas[areaId].floor_id === this._floorId;
+        })
+        return areaIds;
+    }
+
+    setEntityIds() {
+        const entities = this._hass.entities;
+        const areaIds = this.getAreaIds();
+        const entityIds = Object.keys(entities).filter((entityId) => {
+            const entity = entities[entityId];
+            const areaId = entity.area_id;
+            return areaIds.includes(areaId)
+        })
+        this._entityIds = entityIds;
+    }
+
+    setStructures() {
+        this.setEntityIds();
+    }
+
+    /**********************************************************************/
 
     onClick(option) {
         this._option = option;

@@ -1024,6 +1024,107 @@ function $d66841a16b153167$export$dd0fba3206c57e56(rgbA, rgbB, t) {
 }
 
 
+
+
+
+
+class $ba7585aafb473e34$export$14461509c6f1f877 extends (0, $ab210b2da7b39b9d$export$3f2f9f5909897157) {
+    _structure = {};
+    _entityIds = [];
+    _initialized = false;
+    static get properties() {
+        return {
+            _states: {
+                state: true
+            },
+            _changedEntityIds: {
+                state: true
+            },
+            _isSelected: {
+                state: true
+            }
+        };
+    }
+    /************* lifecycle ***********************************************/ // when first constructed
+    constructor(){
+        super();
+    }
+    // each time an update occurs resulting in rerendering
+    update(changedProps) {
+        super.update(changedProps);
+    }
+    // determines if an update should occur
+    shouldUpdate(changedProps) {
+        return !this._initialized || this.hasRelevantChanges() || changedProps.has("_isSelected");
+    }
+    // runs after the first update
+    firstUpdated() {
+        this._initialized = true;
+    }
+    // runs after every update
+    updated() {}
+    // helper to determine if should update
+    hasRelevantChanges() {
+        return this._entityIds.some((entityId)=>this._changedEntityIds.has(entityId));
+    }
+    /*************************************************************************/ isSolo(lightId) {
+        return !this._states[lightId].attributes.entity_id;
+    }
+    getLightData() {
+        let on = 0;
+        let tot = 0;
+        this._entityIds.forEach((lightId)=>{
+            if (this.isSolo(lightId)) {
+                tot = tot + 1;
+                const state = this._states[lightId].state;
+                state === "on" && (on = on + 1);
+            }
+        });
+        return [
+            on,
+            tot
+        ];
+    }
+    // determines the shade of color associated with a particular floor id, based on
+    // the fraction of the lights that are on.
+    getRGB(opacity) {
+        const onTot = this.getLightData();
+        const rgb = (0, $d66841a16b153167$export$dd0fba3206c57e56)((0, $d66841a16b153167$export$173de64b5ad0d5b4), (0, $d66841a16b153167$export$a004fc522c1a4845), onTot[0] / onTot[1]);
+        return (0, $d66841a16b153167$export$4e46ac54fc82cf3b)(rgb, opacity);
+    }
+    getStyles() {
+        let styles = {
+            'background-color': this.getRGB(0.5)
+        };
+        if (this._isSelected) {
+            styles['outline'] = `solid ${this.getRGB(1)}`;
+            styles['outline-offset'] = '-4px';
+        }
+        return styles;
+    }
+    onClick() {
+        this._isSelected = true;
+        this.dispatchEvent(new CustomEvent('select'));
+    }
+    static styles = [
+        (0, $24833e213e3419f0$export$2e2bcd8739ae039),
+        (0, $65e9333b9a0c9dfd$export$2e2bcd8739ae039)
+    ];
+    render() {
+        if (this._initialized) return (0, $f58f44579a4747ac$export$c0bb0b647f701bb5)`
+                <div
+                    class="button outlined"
+                    @click=${()=>this.onClick()}
+                    style=${styleMap(this.getStyles())}
+                >
+                    <div class="small-heading"> Lighting </div>
+                    <div class="sub-info"> sub-info </div>
+                </div>`;
+    }
+}
+customElements.define("light-button", $ba7585aafb473e34$export$14461509c6f1f877);
+
+
 class $b161f025c07cf354$export$7fe46a8978a1b23d extends (0, $ab210b2da7b39b9d$export$3f2f9f5909897157) {
     // private properties
     _hass;
@@ -1031,6 +1132,8 @@ class $b161f025c07cf354$export$7fe46a8978a1b23d extends (0, $ab210b2da7b39b9d$ex
         "lighting",
         "climate"
     ];
+    _entityIds = [];
+    _floorId = "basement";
     // internal reactive states
     static get properties() {
         return {
@@ -1039,7 +1142,7 @@ class $b161f025c07cf354$export$7fe46a8978a1b23d extends (0, $ab210b2da7b39b9d$ex
             }
         };
     }
-    constructor(){
+    /******************************* lifecycle *****************************/ constructor(){
         super();
         this._option = "lighting";
     }
@@ -1048,8 +1151,30 @@ class $b161f025c07cf354$export$7fe46a8978a1b23d extends (0, $ab210b2da7b39b9d$ex
     // gets the hass, and then creates the light bundles to be passed around.
     set hass(hass) {
         this._hass = hass;
+        this.setStructures();
+        console.log(this._structure);
     }
-    onClick(option) {
+    /******************************* structure logic ***********************/ getAreaIds() {
+        const areas = this._hass.areas;
+        const areaIds = Object.keys(areas).filter((areaId)=>{
+            return areas[areaId].floor_id === this._floorId;
+        });
+        return areaIds;
+    }
+    setEntityIds() {
+        const entities = this._hass.entities;
+        const areaIds = this.getAreaIds();
+        const entityIds = Object.keys(entities).filter((entityId)=>{
+            const entity = entities[entityId];
+            const areaId = entity.area_id;
+            return areaIds.includes(areaId);
+        });
+        this._entityIds = entityIds;
+    }
+    setStructures() {
+        this.setEntityIds();
+    }
+    /**********************************************************************/ onClick(option) {
         this._option = option;
     }
     getButtonStyle(option) {
